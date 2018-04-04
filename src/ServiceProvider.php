@@ -10,7 +10,7 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
  */
 class ServiceProvider extends BaseServiceProvider{
 	CONST VENDOR_PATH = 'fuqu-io/laravel-package';
-	CONST SHORT_NAME = 'package';
+	CONST SHORT_NAME = 'fuqu-package';
 
 	/**
 	 * Bootstrap the application services.
