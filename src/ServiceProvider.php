@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
  * @package FuquIo\LaravelCors
  */
 class ServiceProvider extends BaseServiceProvider{
+	CONST VENDOR_PATH = 'fuqu-io/laravel-package';
 	CONST SHORT_NAME = 'package';
 
 	/**
