@@ -41,7 +41,7 @@ class ServiceProvider extends BaseServiceProvider{
 	private function bootConfig(){
 		$this->publishes([__DIR__ . '/../config/main.php' => config_path(SELF::SHORT_NAME . '.php')]);
 		$this->mergeConfigFrom(
-			__DIR__ . '/../config/main.php', 'package'
+			__DIR__ . '/../config/main.php', SELF::SHORT_NAME
 		);
 	}
 
