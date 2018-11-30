@@ -1,6 +1,6 @@
 <?php
 
-namespace FuquIo\LaravelPackage;
+namespace FuquIo\LaravelFakeId;
 
 use Illuminate\Http\Request;
 use Closure;

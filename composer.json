@@ -1,5 +1,5 @@
 {
-    "name": "fuqu-io/laravel-package",
+    "name": "fuqu-io/laravel-fakeid",
     "description": "Laravel package boilerplate.",
     "keywords": [
         "laravel",
@@ -16,7 +16,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "FuquIo\\LaravelPackage\\": "src/"
+            "FuquIo\\LaravelFakeId\\": "src/"
         }
     },
     "autoload-dev": {
@@ -24,7 +24,15 @@
             "FuquIo\\Test\\": "tests/"
         }
     },
-    "require": {},
+    "require": {
+        "php": ">=7.0",
+        "illuminate/config": ">=5.5,<5.8",
+        "illuminate/container": ">=5.5,<5.8",
+        "illuminate/routing": ">=5.5,<5.8",
+        "illuminate/support": ">=5.5,<5.8",
+        "jenssegers/optimus": "^0.2.2",
+        "phpseclib/phpseclib": "^2.0"
+    },
     "require-dev": {
         "graham-campbell/testbench": "^5.0@dev",
         "phpunit/phpunit": "^7.1@dev",
@@ -33,7 +41,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "FuquIo\\LaravelPackage\\ServiceProvider"
+                "FuquIo\\LaravelFakeId\\ServiceProvider"
             ]
         }
     }
