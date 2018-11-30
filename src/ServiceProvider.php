@@ -4,6 +4,7 @@ namespace FuquIo\LaravelFakeId;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use FuquIo\LaravelFakeId\Commands\FakeIdSetupCommand;
+use Jenssegers\Optimus\Optimus;
 
 /**
  * Class ServiceProvider
@@ -29,9 +30,8 @@ class ServiceProvider extends BaseServiceProvider{
 	 * @return void
 	 */
 	public function register(){
-		$this->registerConfig();
 		$this->registerCommand();
-		$this->registerOptimus();
+		$this->registerOptimusAsAlias();
 	}
 
 
@@ -40,16 +40,6 @@ class ServiceProvider extends BaseServiceProvider{
 	 */
 	private function bootConfig(){
 		$this->publishes([__DIR__ . '/../config/main.php' => config_path(SELF::SHORT_NAME . '.php')]);
-		//$this->mergeConfigFrom(__DIR__ . '/../config/main.php', SELF::SHORT_NAME);
-
-
-	}
-
-	/**
-	 * @internal
-	 */
-	private function registerConfig(){
-		//$this->publishes([__DIR__ . '/../config/main.php' => config_path(SELF::SHORT_NAME . '.php')]);
 		$this->mergeConfigFrom(__DIR__ . '/../config/main.php', SELF::SHORT_NAME);
 	}
 
@@ -58,17 +48,14 @@ class ServiceProvider extends BaseServiceProvider{
 	 *
 	 * @return void
 	 */
-	protected function registerOptimus(){
-		$this->app->singleton('Jenssegers\Optimus\Optimus', function ($app){
+	protected function registerOptimusAsAlias(){
+		$this->app->singleton(FakeId::class, function ($app){
 			return new Optimus(
-				$app['config']['fakeid.prime'],
-				$app['config']['fakeid.inverse'],
-				$app['config']['fakeid.random']
+				$app['config'][SELF::SHORT_NAME . '.prime'],
+				$app['config'][SELF::SHORT_NAME . '.inverse'],
+				$app['config'][SELF::SHORT_NAME . '.random']
 			);
 		});
-
-		$this->app->alias('Jenssegers\Optimus\Optimus', 'optimus');
-		$this->app->alias('Jenssegers\Optimus\Optimus', 'fakeid');
 	}
 
 	/**
