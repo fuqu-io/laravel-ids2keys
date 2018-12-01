@@ -16,14 +16,7 @@ class Middleware{
 
 	public function __construct(FakeIdEngine $fakeId, Route $route){
 		$this->fakeId = $fakeId;
-		$pattern = config(ServiceProvider::SHORT_NAME .'.pattern');
-
-		foreach($route->parameters as &$parameter){
-			$parameter = preg_replace($pattern, '$1', $parameter, 1, $match);
-			if($match){
-				$parameter = $fakeId->decode($parameter);
-			}
-		}
+		$this->decodeIfEncoded($route->parameters);
 	}
 
 
@@ -36,19 +29,29 @@ class Middleware{
 	 * @return mixed
 	 */
 	public function handle(Request $request, Closure $next){
-		$pattern = config(ServiceProvider::SHORT_NAME .'.pattern');
+
 
 		$inputs = $request->all();
-		foreach($inputs as &$input){
-			$input = preg_replace($pattern, '$1', $input, 1, $match);
-			if($match){
-				$input = $this->fakeId->decode($input);
-			}
-		}
+		$this->decodeIfEncoded($inputs);
 		$request->request->replace($inputs);
 
 		return $next($request);
 
+	}
+
+	private function decodeIfEncoded(array &$arr){
+		$pattern = config(ServiceProvider::SHORT_NAME .'.pattern');
+
+		foreach($arr as &$input){
+			if(is_string($input)){
+				$input = preg_replace($pattern, '$1', $input, 1, $match);
+				if($match){
+					$input = $this->fakeId->decode($input);
+				}
+			}elseif(is_array($input)){
+				$this->decodeIfEncoded($input);
+			}
+		}
 	}
 
 }
