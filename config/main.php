@@ -8,6 +8,7 @@ return [
 	|--------------------------------------------------------------------------
 	| FakeIdEngine connection settings
 	|--------------------------------------------------------------------------
+	| Obviously  based on https://github.com/Propaganistas/Laravel-FakeId
 	|
 	| Since FakeIdEngine depends on jenssegers/optimus, we need three values:
 	| - A large prime number lower than 2147483647
