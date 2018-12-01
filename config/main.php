@@ -21,6 +21,6 @@ return [
 	'random'  => env('FAKEID_RANDOM', 620464665),
 
 	'prefix' => 'IO',
-	'hide_id' => env('APP_DEBUG')
+	'hide_id' => !env('APP_DEBUG')
 
 ];
