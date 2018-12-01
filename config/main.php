@@ -15,12 +15,12 @@ return [
 	| Run the `ids2keys:setup` Artisan command to auto-generate random values.
 	|
 	*/
-
 	'prime'   => env('FAKEID_PRIME', 961748927),
 	'inverse' => env('FAKEID_INVERSE', 1430310975),
 	'random'  => env('FAKEID_RANDOM', 620464665),
 
+
 	'prefix' => 'IO',
-	'hide_id' => !env('APP_DEBUG')
+	'hide_id' => true, // !env('APP_DEBUG')
 
 ];
