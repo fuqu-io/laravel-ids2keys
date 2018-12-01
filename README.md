@@ -4,7 +4,7 @@ You'll be able to use model ids or obfuscated model keys interchangeably on your
 0. obfuscated key is translated to normal id
 0. standard route model binding takes place
 
-# Composer
+# Composer Installation
 0. add the repo to composer.json "repositories": [{"type": "vcs", "url": "https://github.com/fuqu-io/laravel-ids2keys"}]
 2. `composer require fuqu-io/laravel-ids2keys`
 
