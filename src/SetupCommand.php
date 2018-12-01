@@ -12,7 +12,7 @@ class SetupCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'fakeid:setup
+    protected $signature = 'ids2keys:setup
                             {--o|overwrite : Silently overwrite existing configuration}
                             {--p|preserve : Silently preserves existing configuration}';
 
