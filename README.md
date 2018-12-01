@@ -1,7 +1,7 @@
 # Overview
 You'll be able to use model ids or obfuscated model keys interchangeably on your existing routes WITHOUT custom model binding resolution logic.
 0. request comes in
-0. obfuscated key is translated to normal id
+0. obfuscated keys are translated to normal ids (on route {params} and request->inputs)
 0. standard route model binding takes place
 
 # Composer Installation
@@ -23,3 +23,4 @@ In dev, you may find it handy to see both the key and the id, so take a look at 
 ### Under the hood...
 * The model trait `use FuquIo\LaravelIds2Keys\Id2KeyTrait;` will create an encoded 'key' attribute for your json.
 * The middleware will decode route parameters BEFORE laravel's built in route-model binding.
+* Posted inputs will also be taken care of prior to validation, so you can use normal 'exists' and stuff.

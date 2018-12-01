@@ -81,7 +81,7 @@ class ServiceProvider extends BaseServiceProvider{
 	 */
 	private function bootMiddleware(Router $router){
 
-		$x = array_search(\Illuminate\Routing\Middleware\SubstituteBindings::class, $router->middlewarePriority);
+		$x = array_search(config(self::SHORT_NAME . '.before'), $router->middlewarePriority);
 		array_splice($router->middlewarePriority, $x, 0, Middleware::class);
 
 		$router->aliasMiddleware('keys2ids', Middleware::class);

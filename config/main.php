@@ -1,5 +1,7 @@
 <?php
 
+$prefix = 'IO';
+
 return [
 
 	/*
@@ -19,8 +21,8 @@ return [
 	'inverse' => env('FAKEID_INVERSE', 1430310975),
 	'random'  => env('FAKEID_RANDOM', 620464665),
 
-
-	'prefix' => 'IO',
+	'before'  => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+	'pattern' => '/^'. $prefix .'(\\d+)$/u',
 	'hide_id' => true, // !env('APP_DEBUG')
 
 ];

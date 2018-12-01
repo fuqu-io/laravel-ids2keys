@@ -16,7 +16,7 @@ class Middleware{
 
 	public function __construct(FakeIdEngine $fakeId, Route $route){
 		$this->fakeId = $fakeId;
-		$pattern = '/^'. config(ServiceProvider::SHORT_NAME .'.prefix') .'(\\d+)$/u';
+		$pattern = config(ServiceProvider::SHORT_NAME .'.pattern');
 
 		foreach($route->parameters as &$parameter){
 			$parameter = preg_replace($pattern, '$1', $parameter, 1, $match);
@@ -36,7 +36,7 @@ class Middleware{
 	 * @return mixed
 	 */
 	public function handle(Request $request, Closure $next){
-		$pattern = '/^'. config(ServiceProvider::SHORT_NAME .'.prefix') .'(\\d+)$/u';
+		$pattern = config(ServiceProvider::SHORT_NAME .'.pattern');
 
 		$inputs = $request->all();
 		foreach($inputs as &$input){
