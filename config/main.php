@@ -20,4 +20,7 @@ return [
 	'inverse' => env('FAKEID_INVERSE', 1430310975),
 	'random'  => env('FAKEID_RANDOM', 620464665),
 
+	'prefix' => 'IO',
+	'hide_id' => env('APP_DEBUG')
+
 ];

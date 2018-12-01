@@ -13,7 +13,7 @@ use Closure;
 class Middleware{
 
 	public function __construct(FakeId $fakeId, Route $route){
-		$pattern = '/^io(\\d+)$/u';
+		$pattern = '/^'. config(ServiceProvider::SHORT_NAME .'.prefix') .'(\\d+)$/u';
 
 		foreach($route->parameters as &$parameter){
 			$parameter = preg_replace($pattern, '$1', $parameter, 1, $match);
