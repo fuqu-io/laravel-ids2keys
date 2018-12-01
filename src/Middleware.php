@@ -12,7 +12,10 @@ use Closure;
  */
 class Middleware{
 
+	private $fakeId;
+
 	public function __construct(FakeIdEngine $fakeId, Route $route){
+		$this->fakeId = $fakeId;
 		$pattern = '/^'. config(ServiceProvider::SHORT_NAME .'.prefix') .'(\\d+)$/u';
 
 		foreach($route->parameters as &$parameter){
@@ -33,6 +36,16 @@ class Middleware{
 	 * @return mixed
 	 */
 	public function handle(Request $request, Closure $next){
+		$pattern = '/^'. config(ServiceProvider::SHORT_NAME .'.prefix') .'(\\d+)$/u';
+
+		$inputs = $request->all();
+		foreach($inputs as &$input){
+			$input = preg_replace($pattern, '$1', $input, 1, $match);
+			if($match){
+				$input = $this->fakeId->decode($input);
+			}
+		}
+		$request->request->replace($inputs);
 
 		return $next($request);
 
