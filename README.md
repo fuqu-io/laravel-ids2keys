@@ -1,3 +1,9 @@
+#Overview
+You'll be able to use model ids or obfuscated model keys interchangeably on your existing routes WITHOUT custom model binding resolution logic.
+0. request comes in
+0. obfuscated key is translated to normal id
+0. standard route model binding takes place
+
 #Usage Out-of-the-box...
 
 0. run `php artisan ids2keys:setup`
