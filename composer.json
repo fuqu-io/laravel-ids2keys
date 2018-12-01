@@ -1,5 +1,5 @@
 {
-    "name": "fuqu-io/laravel-fakeid",
+    "name": "fuqu-io/fuqu-ids2keys",
     "description": "Laravel package boilerplate.",
     "keywords": [
         "laravel",
@@ -16,7 +16,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "FuquIo\\LaravelFakeId\\": "src/"
+            "FuquIo\\LaravelIds2Keys\\": "src/"
         }
     },
     "autoload-dev": {
@@ -41,7 +41,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "FuquIo\\LaravelFakeId\\ServiceProvider"
+                "FuquIo\\LaravelIds2Keys\\ServiceProvider"
             ]
         }
     }

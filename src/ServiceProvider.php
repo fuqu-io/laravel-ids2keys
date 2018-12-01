@@ -1,6 +1,6 @@
 <?php
 
-namespace FuquIo\LaravelFakeId;
+namespace FuquIo\LaravelIds2Keys;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\Routing\Router;
@@ -10,8 +10,8 @@ use Illuminate\Routing\Router;
  * @package FuquIo\LaravelCors
  */
 class ServiceProvider extends BaseServiceProvider{
-	CONST VENDOR_PATH = 'fuqu-io/laravel-fakeid';
-	CONST SHORT_NAME = 'fuqu-fakeid';
+	CONST VENDOR_PATH = 'fuqu-io/fuqu-ids2keys';
+	CONST SHORT_NAME = 'fuqu-ids2keys';
 
 	/**
 	 * Bootstrap the application services.
@@ -52,8 +52,8 @@ class ServiceProvider extends BaseServiceProvider{
 	 * @return void
 	 */
 	protected function registerOptimusAsAlias(){
-		$this->app->singleton(FakeId::class, function ($app){
-			return new FakeId(
+		$this->app->singleton(FakeIdEngine::class, function ($app){
+			return new FakeIdEngine(
 				$app['config'][SELF::SHORT_NAME . '.prime'],
 				$app['config'][SELF::SHORT_NAME . '.inverse'],
 				$app['config'][SELF::SHORT_NAME . '.random']

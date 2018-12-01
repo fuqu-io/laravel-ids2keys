@@ -1,10 +1,10 @@
 <?php
-namespace FuquIo\LaravelFakeId;
+namespace FuquIo\LaravelIds2Keys;
 
 trait Id2KeyTrait{
 
 	public function getKeyAttribute(){
-		return config(ServiceProvider::SHORT_NAME .'.prefix') . app(FakeId::class)->encode(parent::getKey());
+		return config(ServiceProvider::SHORT_NAME .'.prefix') . app(FakeIdEngine::class)->encode(parent::getKey());
 	}
 
 	public function getArrayableAppends(){

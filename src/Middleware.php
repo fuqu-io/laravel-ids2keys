@@ -1,6 +1,6 @@
 <?php
 
-namespace FuquIo\LaravelFakeId;
+namespace FuquIo\LaravelIds2Keys;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -12,7 +12,7 @@ use Closure;
  */
 class Middleware{
 
-	public function __construct(FakeId $fakeId, Route $route){
+	public function __construct(FakeIdEngine $fakeId, Route $route){
 		$pattern = '/^'. config(ServiceProvider::SHORT_NAME .'.prefix') .'(\\d+)$/u';
 
 		foreach($route->parameters as &$parameter){

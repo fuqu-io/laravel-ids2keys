@@ -4,10 +4,10 @@ return [
 
 	/*
 	|--------------------------------------------------------------------------
-	| FakeId connection settings
+	| FakeIdEngine connection settings
 	|--------------------------------------------------------------------------
 	|
-	| Since FakeId depends on jenssegers/optimus, we need three values:
+	| Since FakeIdEngine depends on jenssegers/optimus, we need three values:
 	| - A large prime number lower than 2147483647
 	| - The inverse prime so that (PRIME * INVERSE) & MAXID == 1
 	| - A large random integer lower than 2147483647

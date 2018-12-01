@@ -1,6 +1,6 @@
 <?php
 
-namespace FuquIo\LaravelFakeId;
+namespace FuquIo\LaravelIds2Keys;
 
 use Illuminate\Console\Command;
 use Jenssegers\Optimus\Energon;
@@ -21,7 +21,7 @@ class SetupCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Configures FakeId for use';
+    protected $description = 'Configures FakeIdEngine for use';
 
     /**
      * Execute the console command.
@@ -51,11 +51,11 @@ class SetupCommand extends Command
         }
 
         $this->writeNewConfiguration($env, $path);
-        $this->info("FakeId configured correctly.");
+        $this->info("FakeIdEngine configured correctly.");
     }
 
     /**
-     * Checks if the given file array contains existing FakeId configuration.
+     * Checks if the given file array contains existing FakeIdEngine configuration.
      */
     protected function hasExistingConfiguration($file)
     {
@@ -63,7 +63,7 @@ class SetupCommand extends Command
     }
 
     /**
-     * Removes existing FakeId configuration from the given file array.
+     * Removes existing FakeIdEngine configuration from the given file array.
      *
      * @param array $file
      */

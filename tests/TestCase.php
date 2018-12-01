@@ -3,7 +3,7 @@
 namespace FuquIo\Test;
 
 use Orchestra\Testbench\TestCase as BaseCase;
-use FuquIo\LaravelFakeId\ServiceProvider;
+use FuquIo\LaravelIds2Keys\ServiceProvider;
 
 class TestCase extends BaseCase{
 	protected function setUp(){
