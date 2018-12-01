@@ -4,8 +4,12 @@ You'll be able to use model ids or obfuscated model keys interchangeably on your
 0. obfuscated key is translated to normal id
 0. standard route model binding takes place
 
-# Usage Out-of-the-box...
+# Composer
+0. add the repo to composer.json "repositories": [{"type": "vcs", "url": "https://github.com/fuqu-io/laravel-ids2keys"}]
+2. `composer require fuqu-io/laravel-ids2keys`
 
+
+# Usage Out-of-the-box...
 0. run `php artisan ids2keys:setup`
 0. Add the trait to your model(s).  `use FuquIo\LaravelIds2Keys\Id2KeyTrait;`
 0. Assign the middleware alias 'ids2keys' or 'keys2ids' to any routes you like.  These are exactly the same middlewares, so just choose the one that seems more logical to you.
