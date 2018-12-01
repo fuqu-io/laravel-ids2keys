@@ -3,8 +3,7 @@
 namespace FuquIo\LaravelFakeId;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use FuquIo\LaravelFakeId\Commands\FakeIdSetupCommand;
-use Jenssegers\Optimus\Optimus;
+use Illuminate\Routing\Router;
 
 /**
  * Class ServiceProvider
@@ -17,10 +16,14 @@ class ServiceProvider extends BaseServiceProvider{
 	/**
 	 * Bootstrap the application services.
 	 *
+	 * @param Router $router
+	 *
 	 * @return void
 	 */
-	public function boot(){
+	public function boot(Router $router){
 		$this->bootConfig();
+		$this->bootMiddleware($router);
+		$this->bootRoutes();
 
 	}
 
@@ -30,8 +33,8 @@ class ServiceProvider extends BaseServiceProvider{
 	 * @return void
 	 */
 	public function register(){
-		$this->registerCommand();
 		$this->registerOptimusAsAlias();
+		$this->registerCommand();
 	}
 
 
@@ -50,7 +53,7 @@ class ServiceProvider extends BaseServiceProvider{
 	 */
 	protected function registerOptimusAsAlias(){
 		$this->app->singleton(FakeId::class, function ($app){
-			return new Optimus(
+			return new FakeId(
 				$app['config'][SELF::SHORT_NAME . '.prime'],
 				$app['config'][SELF::SHORT_NAME . '.inverse'],
 				$app['config'][SELF::SHORT_NAME . '.random']
@@ -65,9 +68,31 @@ class ServiceProvider extends BaseServiceProvider{
 	 */
 	protected function registerCommand(){
 		$this->app->singleton('fakeid.command.setup', function ($app){
-			return new FakeIdSetupCommand();
+			return new SetupCommand();
 		});
 
 		$this->commands('fakeid.command.setup');
+	}
+
+	/**
+	 * @internal
+	 *
+	 * @param Router $router
+	 */
+	private function bootMiddleware(Router $router){
+
+		$x = array_search(\Illuminate\Routing\Middleware\SubstituteBindings::class, $router->middlewarePriority);
+		array_splice($router->middlewarePriority, $x, 0, Middleware::class);
+
+		$router->aliasMiddleware('keys2ids', Middleware::class);
+
+
+	}
+
+	/**
+	 * @internal
+	 */
+	private function bootRoutes(){
+
 	}
 }

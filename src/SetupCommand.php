@@ -1,11 +1,11 @@
 <?php
 
-namespace FuquIo\LaravelFakeId\Commands;
+namespace FuquIo\LaravelFakeId;
 
 use Illuminate\Console\Command;
 use Jenssegers\Optimus\Energon;
 
-class FakeIdSetupCommand extends Command
+class SetupCommand extends Command
 {
     /**
      * The name and signature of the console command.

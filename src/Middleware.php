@@ -3,6 +3,7 @@
 namespace FuquIo\LaravelFakeId;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Closure;
 
 /**
@@ -10,8 +11,21 @@ use Closure;
  * @package FuquIo\LaravelCors
  */
 class Middleware{
+
+	public function __construct(FakeId $fakeId, Route $route){
+		$pattern = '/^io(\\d+)$/u';
+
+		foreach($route->parameters as &$parameter){
+			$parameter = preg_replace($pattern, '$1', $parameter, 1, $match);
+			if($match){
+				$parameter = $fakeId->decode($parameter);
+			}
+		}
+	}
+
+
 	/**
-	 * Handle an incoming API requests and permitting certain domains.
+	 * Handle an incoming request.
 	 *
 	 * @param  \Illuminate\Http\Request $request
 	 * @param  \Closure                 $next
@@ -19,8 +33,9 @@ class Middleware{
 	 * @return mixed
 	 */
 	public function handle(Request $request, Closure $next){
-		//
 
 		return $next($request);
+
 	}
+
 }

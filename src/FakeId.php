@@ -1,4 +1,8 @@
 <?php
 namespace FuquIo\LaravelFakeId;
 
-abstract class FakeId{}
+use Jenssegers\Optimus\Optimus;
+
+class FakeId extends Optimus{
+	protected static $mode;
+}
